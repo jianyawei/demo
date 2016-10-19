@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+       body{background-color: #000}
+       #banner{
+       width:1000px;margin:100px auto;position:relative;-webkit-perspective:500;
+       transform-style:preserve-3d;
+
+       }
+       #banner img{
+       	position:absolute;width:300px;height:200px;transition:all 1s;
+       }
+       #banner img.left{
+       	transform:rotateY(30deg) translateZ(-100px);z-index: 99;
+       }
+       #banner img.right{transform:rotateY(-30deg) translateZ(-100px);z-index: 99;}
+       #banner img.mid{transform:translateZ(100px);z-index:999;}
+ 
+	</style>
+</head>
+<body>
+	<div id="banner">
+		<img src="images/1.png" >
+		<img src="images/2.png" >
+		<img src="images/3.png" >
+		<img src="images/4.png">
+		<img src="images/5.png">
+		<img src="images/6.png">
+		<img src="images/7.png">
+	</div>
+	<script>
+     var oDiv = document.getElementById( "banner" );
+     var aImg = oDiv.getElementsByTagName("img");
+     var num_mid =  parseInt(aImg.length/2 );
+     function demo(n){
+     var num_len = parseInt( (oDiv.offsetWidth-aImg[0].offsetWidth)/2 );
+     for ( var i = 0;i < aImg.length;i ++ ){
+     	aImg[i].style.left = num_len - ( n - i ) * 100 + "px";
+     	if ( i < n ){
+     		aImg[i].setAttribute("class","left");
+     	};
+     	if ( i == n ){
+     		aImg[i].setAttribute("class","mid");
+     	};
+     	if ( i > n ){
+     		aImg[i].setAttribute("class","right");
+     	};
+     };
+     }
+     demo(num_mid)
+     for ( var i = 0;i <aImg.length;i ++ ){
+      aImg[i].index = i;
+      aImg[i].onclick = function(){
+        demo(this.index)
+      };
+     }
+	</script>
+</body>
+</html>
