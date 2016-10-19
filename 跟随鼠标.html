@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+<style>
+
+	div{width: 200px;height: 200px;background-color: #f00;position: absolute;border-radius: 100px; cursor: move;}
+	
+</style>
+</head>
+<body>
+<div id="round"></div>
+	
+
+</body>
+<script>
+var round =document.getElementById('round');
+// var odiv=document.getElementsByTagName('dipv')[0];
+var body=document.body;
+round.onmousedown=function(e){
+	var e=e||event;
+	var _this=this;
+	var k = _this.cloneNode(true)
+	body.appendChild(k);
+	var py_x=e.clientX-_this.offsetLeft;
+	var py_y=e.clientY-_this.offsetTop;
+	document.onmousemove=function(e){
+		k.style.left=e.clientX-py_x+"px";
+		k.style.top=e.clientY-py_y+"px";
+	}
+	document.onmouseup=function(e){
+		document.onmousemove=null;
+	}
+}
+
+
+// odiv[0].onmousedown=move;
+// odiv[1].onmousedown=move;
+function move(e){
+	var _this=this;
+	var py_x=e.clientX-_this.offsetLeft;
+	var py_y=e.clientY-_this.offsetTop;
+	document.onmousemove=function(e){
+		_this.style.left=e.clientX-py_x+"px";
+		_this.style.top=e.clientY-py_y+"px";
+	}
+	document.onmouseup=function(e){
+		document.onmousemove=null;
+	}
+}
+</script>
+</html>
